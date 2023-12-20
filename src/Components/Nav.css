@@ -1,0 +1,10 @@
+.nav .text-metal-600 {
+    color: white;
+}
+.nav .text-metal-600:hover {
+    color: wheat;
+}
+
+.sideBar .text-metal-600 {
+color: #000;
+}
