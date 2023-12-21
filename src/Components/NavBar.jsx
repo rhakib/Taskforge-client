@@ -1,5 +1,6 @@
 import { Navbar } from "keep-react";
 import '../Components/Nav.css'
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
     return (
@@ -16,7 +17,7 @@ const NavBar = () => {
                             className="lg:flex hidden items-center justify-between gap-8"
                         >
                             <Navbar.Link linkName="Home" />
-                            <Navbar.Link linkName="Dashboard" />
+                            <Link to='/dashboard/userhome'><Navbar.Link linkName="Dashboard" /></Link>
                             <Navbar.Link linkName="Contact us" />
                         </Navbar.Container>
 
