@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { FaPlus } from "react-icons/fa";
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
-import toast from 'react-hot-toast';
 import { Button, Modal } from 'keep-react';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import useGetTasks from '../../Hooks/useGetTasks';
+import ToDoTask from './ToDoTask';
 
 
 
@@ -13,31 +15,41 @@ const UserHome = () => {
 
     const axios = useAxiosPublic()
     const [showModal, setShowModal] = useState(false);
+    const [tasks, refetch] = useGetTasks()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const onSubmit = async (data) => {
         console.log(data)
 
-        const tasks = {
+        const tasksToDo = {
             title: data.title,
             description: data.description,
             deadline: data.deadline,
             priority: data.priority
         }
 
-        const res = await axios.post('/tasks', tasks)
+        const res = await axios.post('/tasks', tasksToDo)
         console.log(res.data);
         if (res.data.insertedId) {
-            toast.success('done')
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your task has been saved",
+                showConfirmButton: false,
+                timer: 1500
+            });
             reset()
             setShowModal(!showModal);
+            refetch()
         }
     }
 
-    
+
     const onClick = () => {
         setShowModal(!showModal);
     };
+
+    
 
 
 
@@ -51,7 +63,7 @@ const UserHome = () => {
                     show={showModal}
                     position="center"
                 >
-                    
+
                     <Modal.Body>
                         <div className="space-y-6">
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6" action="#">
@@ -92,7 +104,7 @@ const UserHome = () => {
 
                                 {/* if there is a button in form, it will close the modal */}
                                 <div className='flex'>
-                                    <button  method="dialog" className='px-2 py-2 rounded-md bg-teal-700 font-semibold text-white'>Add task</button>
+                                    <button method="dialog" className='px-2 py-2 rounded-md bg-teal-700 font-semibold text-white'>Add task</button>
                                 </div>
 
 
@@ -108,7 +120,21 @@ const UserHome = () => {
 
 
             </div>
-            <div>
+            <div className='flex mt-10'>
+                <div className='w-96 text-center'>
+                    <h2 className='text-3xl font-semibold btn-outline btn'>To do </h2>
+                    <div className='space-y-2 mt-4'>
+                        {
+                            tasks.map(task => <ToDoTask key={task._id} task={task}></ToDoTask>)
+                        }
+                    </div>
+                </div>
+                <div className='w-96 text-center'>
+                    <h2 className='text-3xl font-semibold btn-outline btn'>Ongoing </h2>
+                </div>
+                <div className='w-96 text-center'>
+                    <h2 className='text-3xl font-semibold btn-outline btn'>Completed </h2>
+                </div>
 
             </div>
         </div>
