@@ -13,8 +13,8 @@ const ToDoTask = ({ task }) => {
             </div>
             <p className='text-left'>{description}</p>
             <div className='flex gap-2 mt-2 font-bold'>
-                <button className='bg-yellow-500 px-2 py-1 rounded-md'>Mark as Ongoing</button>
-                <button className='bg-green-600 px-2 py-1 rounded-md'>Mark as Completed</button>
+                <button className='bg-yellow-500 px-2  py-2 rounded-md'>Mark as Ongoing</button>
+                <button className='bg-green-600 px-2  py-2 rounded-md'>Mark as Completed</button>
             </div>
         </div>
     );
