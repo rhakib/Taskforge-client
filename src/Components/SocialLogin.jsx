@@ -24,7 +24,7 @@ const SocialLogin = () => {
     return (
         <div>
             <div className='flex mb-2 justify-center border w-2/3 mx-auto py-1 rounded-3xl'>
-                <button onClick={handeleGoogleSignIn} className='btn flex items-center gap-2 dark:text-white font-bold   border-none'><AiOutlineGoogle className='text-3xl text-green-500'></AiOutlineGoogle>Sign in with Google</button>
+                <button onClick={handeleGoogleSignIn} className='flex items-center gap-2 dark:text-white font-bold   border-none'><AiOutlineGoogle className='text-3xl text-green-500'></AiOutlineGoogle>Sign in with Google</button>
             </div>
         </div>
     );
