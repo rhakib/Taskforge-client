@@ -4,6 +4,7 @@ import { IoIosHome } from "react-icons/io";
 import { Toaster } from 'react-hot-toast';
 import { FaPlus } from 'react-icons/fa';
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import Footer from '../Components/Footer';
 
 
 const DashBoard = () => {
@@ -37,6 +38,7 @@ const DashBoard = () => {
                 <div className='flex-1 p-10 md:overflow-x-scroll'>
                     <Outlet></Outlet>
                 </div>
+                <Footer/>
                 <div><Toaster/></div>
 
             </div>
